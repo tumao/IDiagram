@@ -1,5 +1,7 @@
 package frame;
 
+import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.Menu;
@@ -17,6 +19,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JTextArea;
+import javax.swing.JToolBar;
 import javax.swing.JDialog;
 
 public class sMainFrame
@@ -27,7 +30,9 @@ public class sMainFrame
 	private JMenuItem f_closeItem, f_new, f_open, f_save,
 		ed_find, ed_edit,
 		nw_update,
-		hp_doc,hp_checkNew, hp_about; 		// 
+		hp_doc,hp_checkNew, hp_about; 		//
+	private JToolBar toolBar;
+	JButton utility,chance,decision;
 	
 	public sMainFrame ()
 	{
@@ -38,10 +43,28 @@ public class sMainFrame
 	{
 		frame = new JFrame ("影响图");
 		frame.setBounds(300, 100, 500, 600);
-		frame.setLayout(new FlowLayout());
+		menuBar = new JMenuBar();		// 菜单栏
+		toolBar = new JToolBar();		// 工具栏
 		
-		menuBar = new JMenuBar ();		// 菜单栏
+		initMenuBar();		// 初始化菜单栏，包括菜单栏中的所有的菜单项
 		
+		initToolBar();		// 初始化菜单栏中的工具栏
+		
+		frame.setJMenuBar(menuBar);
+		Container contentPane = frame.getContentPane();
+		contentPane.add(toolBar,BorderLayout.NORTH);
+		
+		menuEvent();							// 添加菜单响应事件（在菜单栏初始化的基础之上，为菜单栏中的菜单项添加监听事件）
+		frame.setVisible(true);
+		
+	}
+	
+	/**
+	 * 初始化菜单栏(包括初始化菜单栏中的所有项目)
+	 */
+	private void initMenuBar()
+	{
+		toolBar.setRollover(true);
 		file = new JMenu("文件");			// 主菜单
 		edit = new JMenu("编辑");
 		network = new JMenu("网络");
@@ -84,15 +107,26 @@ public class sMainFrame
 		menuBar.add(edit);
 		menuBar.add(network);
 		menuBar.add(help);
-		
-		frame.setJMenuBar(menuBar);
-		
-		myEvent();							// 添加菜单响应事件
-		frame.setVisible(true);
-		
 	}
 	
-	private void myEvent()
+	/**
+	 * 初始化工具栏
+	 */
+	private void initToolBar()
+	{
+//		toolBar = new JToolBar();		// 工具栏
+		toolBar.setFloatable(false);
+		utility = new JButton("Utility");
+		toolBar.add(utility,FlowLayout.LEFT);
+		toolBar.addSeparator();
+		chance = new JButton("Chance");
+		toolBar.add(chance);
+		toolBar.addSeparator();
+		decision = new JButton("Decision");
+		toolBar.add(decision);
+	}
+	
+	private void menuEvent()
 	{
 		frame.addWindowListener(new WindowAdapter(){			// 为frame添加监听事件
 			public void windowClosing(WindowEvent e) 
@@ -121,5 +155,13 @@ public class sMainFrame
 				System.out.println("this  is file of new");
 			}
 		});
+		
+		decision.addActionListener(new ActionListener(){			// 新建文件
+			public void actionPerformed(ActionEvent e)
+			{
+				System.out.println("toolbar button");
+			}
+		});
 	}
+	
 }
