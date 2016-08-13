@@ -64,11 +64,7 @@ public class Index
 //		frame.pack();
 //		frame.setVisible(true);
 		
-//		JGraph graph = new JGraph();
-//		JFrame frame = new JFrame();
-//		frame.getContentPane().add(new JScrollPane(graph));
-//		frame.pack();
-//		frame.setVisible(true);
+
 	}
 
 }

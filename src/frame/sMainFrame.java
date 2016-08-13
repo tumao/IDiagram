@@ -20,6 +20,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JTextArea;
 import javax.swing.JToolBar;
+
+import core.EventListener;
+
 import javax.swing.JDialog;
 
 public class sMainFrame
@@ -110,7 +113,8 @@ public class sMainFrame
 	}
 	
 	/**
-	 * 初始化工具栏
+	 * 初始化工具栏,并且为工具栏中的图标添加事件
+	 * 
 	 */
 	private void initToolBar()
 	{
@@ -118,12 +122,17 @@ public class sMainFrame
 		toolBar.setFloatable(false);
 		utility = new JButton("Utility");
 		toolBar.add(utility,FlowLayout.LEFT);
+		utility.addActionListener(new EventListener());
+		
 		toolBar.addSeparator();
 		chance = new JButton("Chance");
 		toolBar.add(chance);
+		chance.addActionListener(new EventListener());
+		
 		toolBar.addSeparator();
 		decision = new JButton("Decision");
 		toolBar.add(decision);
+		decision.addActionListener(new EventListener());
 	}
 	
 	private void menuEvent()
@@ -160,6 +169,20 @@ public class sMainFrame
 			public void actionPerformed(ActionEvent e)
 			{
 				System.out.println("toolbar button");
+			}
+		});
+		
+		utility.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				System.out.println("this is utility button");
+			}
+		});
+		
+		chance.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				System.out.println("this is chance button");
 			}
 		});
 	}
