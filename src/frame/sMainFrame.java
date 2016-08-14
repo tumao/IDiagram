@@ -7,8 +7,12 @@ import java.awt.Frame;
 import java.awt.Menu;
 import java.awt.MenuBar;
 import java.awt.MenuItem;
+import java.awt.MouseInfo;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -20,6 +24,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JTextArea;
 import javax.swing.JToolBar;
+import javax.swing.SwingUtilities;
 
 import core.EventListener;
 
@@ -122,7 +127,7 @@ public class sMainFrame
 		toolBar.setFloatable(false);
 		utility = new JButton("Utility");
 		toolBar.add(utility,FlowLayout.LEFT);
-		utility.addActionListener(new EventListener());
+		utility.addActionListener(new EventListener());		// 为工具栏中的图标添加core中的EventListener,同以下
 		
 		toolBar.addSeparator();
 		chance = new JButton("Chance");
@@ -184,6 +189,48 @@ public class sMainFrame
 			{
 				System.out.println("this is chance button");
 			}
+		});
+		
+		// 为frame 添加鼠标事件
+		frame.addMouseListener(new MouseListener(){
+			
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
+				// TODO Auto-generated method stub
+				Point point = MouseInfo.getPointerInfo().getLocation();	// 鼠标当前相对于屏幕的坐标
+				SwingUtilities.convertPointFromScreen(point, frame);	// 鼠标相对于frame的坐标
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e)
+			{
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e)
+			{
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e)
+			{
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e)
+			{
+				// TODO Auto-generated method stub
+				
+			}
+			
 		});
 	}
 	

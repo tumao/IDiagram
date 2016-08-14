@@ -25,12 +25,16 @@ import org.jgraph.graph.GraphConstants;
 import org.jgraph.graph.GraphLayoutCache;
 import org.jgraph.graph.GraphModel;
 
+import java.awt.MouseInfo;
+import java.awt.Point;
+
 public class Index
 {
 
 	public static void main(String[] args)
 	{
 		 new sMainFrame();
+//		 Point point = MouseInfo.getPointerInfo().getLocation();
 //		GraphModel model = new DefaultGraphModel();
 //		GraphLayoutCache view = new GraphLayoutCache(model, new DefaultCellViewFactory());
 //		JGraph graph = new JGraph(model, view);
