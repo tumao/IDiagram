@@ -42,6 +42,8 @@ public class sMainFrame
 	private JToolBar toolBar;
 	JButton utility,chance,decision;
 	
+	public static String clipboard = "utilitys";	// 工具栏的选中工具
+	
 	public sMainFrame ()
 	{
 		init();
@@ -63,8 +65,29 @@ public class sMainFrame
 		contentPane.add(toolBar,BorderLayout.NORTH);
 		
 		menuEvent();							// 添加菜单响应事件（在菜单栏初始化的基础之上，为菜单栏中的菜单项添加监听事件）
+		frame.addMouseListener(new EventListener(frame));
 		frame.setVisible(true);
 		
+	}
+	
+	/**
+	 * 设置工具栏的工具选中
+	 * 
+	 * @param clip
+	 */
+	public static void setClipboard (String clip)
+	{
+		clipboard = clip;
+	}
+	
+	/**
+	 * 获取当前工具栏的选中工具
+	 * 
+	 * @return
+	 */
+	public static String getClipboard()
+	{
+		return clipboard;
 	}
 	
 	/**
@@ -191,47 +214,6 @@ public class sMainFrame
 			}
 		});
 		
-		// 为frame 添加鼠标事件
-		frame.addMouseListener(new MouseListener(){
-			
-			@Override
-			public void mouseClicked(MouseEvent e)
-			{
-				// TODO Auto-generated method stub
-				Point point = MouseInfo.getPointerInfo().getLocation();	// 鼠标当前相对于屏幕的坐标
-				SwingUtilities.convertPointFromScreen(point, frame);	// 鼠标相对于frame的坐标
-				
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e)
-			{
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e)
-			{
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e)
-			{
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e)
-			{
-				// TODO Auto-generated method stub
-				
-			}
-			
-		});
 	}
 	
 }
